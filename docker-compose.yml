@@ -1,0 +1,22 @@
+---
+services:
+  prowlarr:
+    image: ${image}
+    container_name: ${container_name}
+    environment:
+      - PUID=${PUID}
+      - PGID=${PGID}
+      - TZ=${TZ}
+    volumes:
+      - /var/lib/docker/volumes/${container_name}:/config
+    ports:
+      - target: 9696
+        published: 9696
+        protocol: tcp
+        mode: host        
+    deploy:
+      placement:
+        constraints:
+          - node.labels.deployment.target.prowlarr == true
+      restart_policy:
+        condition: on-failure
