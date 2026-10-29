@@ -1,22 +1,22 @@
----
 services:
   prowlarr:
     image: ${image}
     container_name: ${container_name}
     environment:
-      - PUID=${PUID}
-      - PGID=${PGID}
-      - TZ=${TZ}
+    - PUID=1000
+    - PGID=33
+    - TZ=America/Chicago
     volumes:
-      - /var/lib/docker/volumes/${container_name}:/config
+    - /var/lib/docker/volumes/prowlarr-swarm:/config
     ports:
-      - target: 9696
-        published: 9696
-        protocol: tcp
-        mode: host        
+    - target: 9696
+      published: 9696
+      protocol: tcp
+      mode: host
     deploy:
       placement:
         constraints:
-          - node.labels.deployment.target.prowlarr == true
+        - node.labels.deployment.target.prowlarr == true
       restart_policy:
         condition: on-failure
+volumes: {}
