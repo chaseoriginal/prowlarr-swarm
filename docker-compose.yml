@@ -1,7 +1,7 @@
 services:
   prowlarr:
-    image: ${image}
-    container_name: ${container_name}
+    image: lscr.io/linuxserver/prowlarr:latest
+    container_name: prowlarr-swarm_prowlarr
     environment:
     - PUID=1000
     - PGID=33
