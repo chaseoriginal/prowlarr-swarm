@@ -18,5 +18,5 @@ services:
         constraints:
         - node.labels.deployment.target.prowlarr == true
       restart_policy:
-        condition: on-failure
+        condition: any
 volumes: {}
